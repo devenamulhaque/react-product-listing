@@ -1,4 +1,6 @@
 import { BsStarFill , BsStarHalf , BsStar} from "react-icons/bs";
+import { NavLink } from "react-router-dom";
+
 const Product = ({product}) => {
     //rating star function 
     const reatingStar = Array.from({length: 5 }, (elem , index) => {
@@ -20,9 +22,9 @@ const Product = ({product}) => {
       <div>
           <div className="w-full h-full max-w-sm bg-white rounded-lg shadow-md flex flex-col justify-between">
               <div>
-                  <a href="#">
+                  <NavLink to="/live">
                       <img className="p-8 rounded-t-lg h-[300px] w-full object-cover" src={product.image} alt="product image" />
-                  </a>
+                  </NavLink>
                   <div className="px-5">
                       <a href="#" className="text-[16px] text-gray-800 font-semibold mb-1 block">{product.category}</a>
                       <a href="#">
