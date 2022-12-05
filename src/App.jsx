@@ -1,6 +1,6 @@
 import React from 'react'
 import { BrowserRouter as Router, Routes, Route,  } from 'react-router-dom'
-import Home from './components/Home'
+import Query from './components/query'
 import SingleProduct from './components/SingleProduct'
 const App = () => {
 
@@ -8,7 +8,7 @@ const App = () => {
   return (
     <Router>
         <Routes>
-          <Route path="/"  element={<Home />}/>
+          <Route path="/"  element={<Query />}/>
           <Route path="/singleproduct/:id"  element={<SingleProduct />}/>
         </Routes>
     </Router>
