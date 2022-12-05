@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import Blog from './components/blog'
+import Product from './components/Product'
 const App = () => {
-  const [blog, setBlog] = useState(null);
-  const fetchQuote = async () => {
+  const [products, setProducts] = useState(null);
+  const fetchProducts = async () => {
     const res = await axios.get('https://fakestoreapi.com/products');
-    setBlog(res.data);
+    setProducts(res.data);
   }
   useEffect(() => {
-    fetchQuote();
+    fetchProducts();
   }, [])
   return (
     <div className='grid grid-cols-3  max-w-[1199px] mx-auto gap-y-16 gap-[20px] my-[100px]'>
       {
-        blog?.map(single => (
-          <Blog key={single.id} single={single} />
+        products?.map(product => (
+          <Product key={product.id} product={product} />
         ))
       }
       
