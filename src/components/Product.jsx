@@ -17,19 +17,18 @@ const Product = ({product}) => {
             }
         </div>
     })
-
     return (
       <div>
           <div className="w-full h-full max-w-sm bg-white rounded-lg shadow-md flex flex-col justify-between">
               <div>
-                  <NavLink to="/live">
+                  <NavLink to={`/SingleProduct/${product.id}`}>
                       <img className="p-8 rounded-t-lg h-[300px] w-full object-cover" src={product.image} alt="product image" />
                   </NavLink>
                   <div className="px-5">
-                      <a href="#" className="text-[16px] text-gray-800 font-semibold mb-1 block">{product.category}</a>
-                      <a href="#">
+                      <NavLink to={`/SingleProduct/${product.id}`} className="text-[16px] text-gray-800 font-semibold mb-1 block">{product.category}</NavLink>
+                      <NavLink to={`/SingleProduct/${product.id}`}>
                           <h5 className="text-xl font-semibold tracking-tight text-gray-900 line-clamp-1">{product.title}</h5>
-                      </a>
+                      </NavLink>
                   </div>
                   <div className="flex items-center my-4 px-5">
                     <div className="flex items-center gap-1">
