@@ -1,7 +1,7 @@
 import { BsStarFill , BsStarHalf , BsStar} from "react-icons/bs";
 import { NavLink } from "react-router-dom";
 
-const Product = ({product}) => {
+const ProductCard = ({product}) => {
     //rating star function 
     const reatingStar = Array.from({length: 5 }, (elem , index) => {
         let number = index + 0.5;
@@ -50,4 +50,4 @@ const Product = ({product}) => {
     )
   }
   
-  export default Product  
+  export default ProductCard  

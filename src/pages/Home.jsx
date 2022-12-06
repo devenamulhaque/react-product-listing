@@ -1,9 +1,7 @@
 
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import Header from './header'
-import Footer from './footer'
-import Product from './Product'
+import ProductCard from '../components/ProductCard'
 const home = () => {
     //Product api call here
     const [products, setProducts] = useState(null);
@@ -29,15 +27,13 @@ const home = () => {
 
   return (
     <div>
-        <Header />
-
         <div className='text-center'>
             <div className='grid grid-cols-3  max-w-[1199px] mx-auto gap-y-16 gap-[20px] my-[100px]'>
                 {
                 slice?.map(product => (
-                    <Product key={product.id} product={product} />
+                    <ProductCard key={product.id} product={product} />
                 ))
-                }
+                } 
             </div>
             {proLenght >= visible  ? (
                 <button 
@@ -49,8 +45,6 @@ const home = () => {
                 ) : ""
             }
         </div>
-
-        <Footer />
     </div>
   )
 }
