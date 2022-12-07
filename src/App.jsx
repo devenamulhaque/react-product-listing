@@ -7,6 +7,7 @@ import SingleProduct from './pages/SingleProduct'
 import About from './pages/about'
 import Blog from './pages/blog'
 import SingleBlog from './pages/singleBlog'
+import Category from './pages/category'
 import ErrorPage from './pages/ErrorPage'
 const App = () => {
   return (
@@ -23,6 +24,7 @@ const App = () => {
             <Route path="/blog"  element={<Blog />}/>
             <Route path="/singleblog/:id"  element={<SingleBlog />}/>
             <Route path="/singleblog" element={<Navigate replace to="/" />} />
+            <Route path="/:category"  element={<Category />}/>
             <Route path="*" element={<ErrorPage />} />
           </Routes>
           <Footer />

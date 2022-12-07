@@ -5,3 +5,6 @@
 .cont-height{
     height: calc(100% - 250px);
 }
+.swiper-wrapper{
+    align-items: center;
+}

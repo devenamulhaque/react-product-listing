@@ -7,9 +7,9 @@ const ProductCard = ({product}) => {
         let number = index + 0.5;
         return <div key={index}>
             {
-                product.rating.rate >= index + 1 ? (
+                product.rating >= index + 1 ? (
                     <BsStarFill className="text-[16px] text-yellow-400" /> 
-                ): product.rating.rate >= number ? (
+                ): product.rating >= number ? (
                     <BsStarHalf className="text-[16px] text-yellow-400" />
                 ) : (
                     <BsStar className="text-[16px] text-yellow-400" />
@@ -22,10 +22,10 @@ const ProductCard = ({product}) => {
           <div className="w-full h-full max-w-sm bg-white rounded-lg shadow-md flex flex-col justify-between">
               <div>
                   <NavLink to={`/SingleProduct/${product.id}`}>
-                      <img className="p-8 rounded-t-lg h-[300px] w-full object-cover" src={product.image} alt="product image" />
+                      <img className="p-8 rounded-t-lg h-[300px] w-full object-cover" src={product.thumbnail} alt="product image" />
                   </NavLink>
                   <div className="px-5">
-                      <NavLink to={`/SingleProduct/${product.id}`} className="text-[16px] text-gray-800 font-semibold mb-1 block">{product.category}</NavLink>
+                      <NavLink to={`/${product.category}`} className="text-[16px] text-gray-800 font-semibold mb-1 block">{product.category}</NavLink>
                       <NavLink to={`/SingleProduct/${product.id}`}>
                           <h5 className="text-xl font-semibold tracking-tight text-gray-900 line-clamp-1">{product.title}</h5>
                       </NavLink>
@@ -34,7 +34,7 @@ const ProductCard = ({product}) => {
                     <div className="flex items-center gap-1">
                         {reatingStar}
                     </div>
-                     <span className="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ml-3">{product.rating.rate}</span>
+                     <span className="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ml-3">{product.rating}</span>
                   </div>
                   
               </div>

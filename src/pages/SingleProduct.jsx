@@ -2,11 +2,17 @@ import axios from 'axios';
 import React ,  { useEffect, useState  } from 'react'
 import { useParams } from 'react-router-dom';
 import { BsStarFill , BsStarHalf , BsStar} from "react-icons/bs";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination } from 'swiper';
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 const SingleProduct = () => {
   const { id } = useParams();
   const [singleProduct, setSingleProduct] = useState(null);
   const fetchSingleProducts = async () => {
-      const res = await axios.get(`https://fakestoreapi.com/products/${id}`);
+      const res = await axios.get(`https://dummyjson.com/products/${id}`);
       setSingleProduct(res.data);
   }
   useEffect(() => {
@@ -18,9 +24,9 @@ const SingleProduct = () => {
     let number = index + 0.5;
     return <div key={index}>
       {
-          singleProduct?.rating?.rate >= index + 1 ? (
+          singleProduct?.rating >= index + 1 ? (
               <BsStarFill className="text-[16px] text-yellow-400" /> 
-          ): singleProduct?.rating?.rate >= number ? (
+          ): singleProduct?.rating >= number ? (
               <BsStarHalf className="text-[16px] text-yellow-400" />
           ) : (
               <BsStar className="text-[16px] text-yellow-400" />
@@ -34,9 +40,22 @@ const SingleProduct = () => {
       <main>
         <section className="text-gray-700 body-font overflow-hidden bg-white">
           <div className="container px-5 py-24 mx-auto">
-            <div className="lg:w-4/5 mx-auto flex items-center">
+            <div className="lg:w-4/5 mx-auto grid grid-cols-2 items-center">
               <div className='rounded border border-gray-200 p-4'>
-                <img alt="ecommerce" className="lg:w-1/2 w-full object-cover object-center mx-auto" src={singleProduct?.image} />
+              <Swiper
+                modules={[Navigation, Pagination]}
+                spaceBetween={50}
+                slidesPerView={1}
+                onSlideChange={() => console.log('slide change')}
+                navigation
+                pagination={{ clickable: true }}
+              >
+                {singleProduct?.images.map((img, index) => (
+                  <SwiperSlide key={index}>
+                      <img  alt="ecommerce" className="lg:w-1/2 w-full object-cover object-center mx-auto" src={img} />
+                  </SwiperSlide>
+                ))}
+              </Swiper>
               </div>
               <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
                 <h2 className="text-sm title-font text-gray-500 tracking-widest">{singleProduct?.category}</h2>
@@ -44,7 +63,7 @@ const SingleProduct = () => {
                 <div className="flex mb-4">
                   <span className="flex items-center">
                     {reatingStarDetails}
-                    <span className="text-gray-600 ml-3">{singleProduct?.rating.rate} Reviews</span>
+                    <span className="text-gray-600 ml-3">{singleProduct?.rating} Reviews</span>
                   </span>
                   <span className="flex ml-3 pl-3 py-2 border-l-2 border-gray-200">
                     <a className="text-gray-500">
@@ -88,9 +107,16 @@ const SingleProduct = () => {
                       </span>
                     </div>
                   </div>
+                  <div className='ml-5'>
+                    <span>Stock: {singleProduct?.stock}</span>
+                  </div>
                 </div>
+                <span className="title-font  text-xl text-gray-900 mb- block">Discount: {singleProduct?.discountPercentage}%</span>
+                <span className="title-font  text-xl text-gray-900 mb-5 block">Brand: {singleProduct?.brand}</span>
                 <div className="flex">
                   <span className="title-font font-medium text-2xl text-gray-900">${singleProduct?.price}</span>
+                  
+                  
                   <button className="flex ml-auto text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded">Add to Card</button>
                   <button className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">
                     <svg fill="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-5 h-5" viewBox="0 0 24 24">
